@@ -25,10 +25,28 @@ void Harl::error(void)
 }
 
 void Harl::complain( string level )  {
+	int idx = 0;
 	string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*functptr[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	
-	for (int i = 0; i < 4; i++)
-		if (levels[i] == level)
-			(this->*functptr[i])();
+	while (idx < 4 && levels[idx] != level)
+		idx++;
+	switch (idx)
+	{
+		case 0:
+			(this->*functptr[0])();
+			cout 	<< endl;
+			break;
+		case 1:
+			(this->*functptr[1])();
+			cout 	<< endl;
+			break;
+		case 2:
+			(this->*functptr[2])();
+			cout 	<< endl;
+			break;
+		case 3:
+			(this->*functptr[3])();
+			break;
+	}
 }
