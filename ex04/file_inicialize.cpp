@@ -1,6 +1,6 @@
 #include "header.hpp"
 
-int	file_atribution(ifstream &file_read, ofstream &file_write, char* filename)
+int	file_inicialize(ifstream &file_read, ofstream &file_write, char* filename)
 {
 	char	newArray[strlen(filename) + strlen(".replace") + 1];
 

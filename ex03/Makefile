@@ -48,10 +48,7 @@ LIB_FILE					=	libft.a
 SOURCE						=	main.cpp \
 								srcs/HumanA.cpp \
 								srcs/HumanB.cpp \
-								srcs/Weapon.cpp \
-								incs/HumanA.cpp \
-								incs/HumanB.cpp \
-								incs/Weapon.cpp \
+								srcs/Weapon.cpp 
 
 
 #################################################################################################

@@ -14,7 +14,7 @@ void Harl::info(void)
 
 void Harl::warning(void)
 {
-	cout 	<< "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month" 
+	cout 	<< "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month." 
 			<< endl;
 }
 
@@ -25,22 +25,47 @@ void Harl::error(void)
 }
 
 void Harl::complain( string level )  {
+	int idx = 0;
 	string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*functptr[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	
-	for (int idx = 0; idx < 4; idx++)
-		if (levels[idx] == level)
-		{
-			while (idx < 4)
-			{
-				cout	<< "[" 
-						<< levels[idx] 
-						<< "]" 
-						<< std::endl;
-				(this->*functptr[idx])();
-				cout 	<< std::endl;
-				idx++;
-			}
-			return ;
-		}
+	while (idx < 4 && levels[idx] != level)
+		idx++;
+	switch (idx)
+	{
+		case 0:
+			cout	<< "[" 
+					<< "DEBUG"
+					<< "]"
+					<< endl;
+			(this->*functptr[0])();
+			cout 	<< endl;
+		case 1:
+			cout	<< "[" 
+					<< "INFO"
+					<< "]"
+					<< endl;
+			(this->*functptr[1])();
+			cout 	<< endl;
+		case 2:
+			cout	<< "[" 
+					<< "WARNING"
+					<< "]"
+					<< endl;
+			(this->*functptr[2])();
+			cout 	<< endl;
+		case 3:
+			cout	<< "[" 
+					<< "ERROR"
+					<< "]"
+					<< endl;
+			(this->*functptr[3])();
+			break;
+		default:
+			cout	<< "[" 
+					<< "Probably complaining about insignificant problems"
+					<< "]" 
+					<< endl;
+			break;
+	}
 }

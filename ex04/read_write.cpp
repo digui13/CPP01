@@ -17,5 +17,5 @@ void	read_write(string word, string replace, string line, ofstream &file_write)
 		else
 			break ;
 	}
-	file_write << &line[idx] << std::endl;
+	file_write << &line[idx] << endl;
 }

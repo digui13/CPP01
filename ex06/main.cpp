@@ -1,15 +1,10 @@
 #include "Harl.hpp"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	Harl h;
 
-	h.complain("DEBUG");
-	h.complain("INFO");
-	h.complain("WARNING");
-	h.complain("ERROR");
-
-	h.complain("wadw");
-
-	return (1);
+	if (argc == 2)
+		h.complain(*(argv + argc - 1));
+	return (0);
 }

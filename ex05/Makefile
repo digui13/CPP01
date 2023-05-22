@@ -5,10 +5,11 @@
 #	MAKEFLAGS += --silent
 
 #NAME
-NAME						=	Harl
+NAME						=	harl
 
 # Compiler
-Compile						=	g++ -Wall -Wextra -Werror -fsanitize=address -std=c++98
+Compile						=	clang++ -Wall -Wextra -Werror -fsanitize=address -std=c++98
+#Compile						=	c++ -Wall -Wextra -Werror -fsanitize=address -std=c++98
 
 # Flags for Compiler
 O_FLAG 						=	-o
@@ -30,58 +31,45 @@ NORM 						=	norminette
 # 										FOLDERS													#
 #################################################################################################
 
-LIB_FOLDER					=	libs
-#INC_FOLDER					=	incs
+SRC_FOLDER					=	srcs
 OBJ_FOLDER					=	objs
+INC_FOLDER					=	incs
+LIB_FOLDER					=	libs
+
 
 #################################################################################################
 # 										FILES													#
 #################################################################################################
 
-# Source files
-SRC_FILES					=	$(wildcard *.cpp)
+OBJS						=	$(SOURCE:.cpp=.o)
 
-HEADER_FILES				=	$(wildcard *.h)
+LIB_FILE					=	libft.a
 
-LIB_FILE					=	$(NAME).a
-
-OBJ_FILES					=	$(SRC_FILES:%.cpp=$(OBJ_FOLDER)/%.o)
+SOURCE						=	main.cpp \
+								Harl.cpp
 
 
 #################################################################################################
 # 										RULES													#
 #################################################################################################
 
-# Convert C Files to Object Files
-$(OBJ_FOLDER)/%.o:%.cpp	folders
-					${Compile} $(INC) $(O_FLAG) $@ $(C_FLAG) $<
-
 # all
-all:				$(NAME)					
-
-folders:				
-					$(CREATE_FOLDER) $(OBJ_FOLDER)
-					$(CREATE_FOLDER) $(LIB_FOLDER)
+all: $(NAME)
 
 # Build Project
-$(NAME): 			${OBJ_FILES}
-					${AR} ${LIB_FOLDER}/${LIB_FILE} ${OBJ_FILES}
-					${Compile} ${LIB_FOLDER}/${LIB_FILE} $(O_FLAG) $(NAME)
-
-# Norminette
-norm:
-					$(NORM) $(HEADER_FILES) $(SRC_FILES)
+$(NAME): $(OBJS)
+					$(Compile) $(OBJS) -o $(NAME)
 
 # Clean Project
 clean:
-					${RM} ${OBJ_FOLDER}
-					${RM} $(NAME)
+					$(RM) $(OBJ_FILES) $(OBJS)
+					$(RM) $(NAME)
 
 fclean:				clean
-					${RM} $(LIB_FOLDER)
+					$(RM) $(NAME)
 
 # Clean and Build Project
-re:					fclean all
+re:					fclean $(NAME)
 
-# Phony (I dont remember what this do, i think is to reserve the name or something like that)
-.PHONY:				all norm clean fclean re
+# Phony (it makes clear that isn't a file but a command of the Makefile)
+.PHONY:				all clean fclean re

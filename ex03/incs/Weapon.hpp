@@ -1,11 +1,23 @@
 #ifndef WEAPON_HPP
 #define WEAPON_HPP
 
+/*	***********************************	*/
+/*	*			INCLUDES			  *	*/
+/*	***********************************	*/
+
 #include <iostream>
+
+/*	***********************************	*/
+/*	*			USINGS			  	  *	*/
+/*	***********************************	*/
 
 using std::string;
 using std::endl;
 using std::cout;
+
+/*	***********************************	*/
+/*	*			CLASS				  *	*/
+/*	***********************************	*/
 
 class Weapon
 {
@@ -14,8 +26,8 @@ class Weapon
 	public:
 		Weapon(string);
 		~Weapon();
-		const	string	&getType();
-		void	setType(string);
+		const string	&getType();
+		void			setType(string);
 };
 
 #endif

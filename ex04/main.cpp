@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 				<< endl;
 		return (1);
 	}
-	if (file_atribution(file_read, file_write, argv[1]) == 1)
+	if (file_inicialize(file_read, file_write, argv[1]) == 1)
 	{
 		cerr	<< "Files Error!" 
 				<< endl;
